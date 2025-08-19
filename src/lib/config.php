@@ -11,6 +11,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Default base URL for production hosting if APP_BASE_URL env is not set
+if (!getenv('APP_BASE_URL')) {
+    putenv('APP_BASE_URL=https://darkslateblue-chicken-503860.hostingersite.com');
+}
+
 // Database configuration via environment variables or defaults
 define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
 define('DB_NAME', getenv('DB_NAME') ?: 'u634930929_qq');
