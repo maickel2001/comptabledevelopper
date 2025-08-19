@@ -13,9 +13,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Database configuration via environment variables or defaults
 define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
-define('DB_NAME', getenv('DB_NAME') ?: 'ola_store');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'u634930929_qq');
+define('DB_USER', getenv('DB_USER') ?: 'u634930929_qq');
+define('DB_PASS', getenv('DB_PASS') ?: 'Ino1234');
 define('DB_PORT', (int)(getenv('DB_PORT') ?: 3306));
 
 // Application name
