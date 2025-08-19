@@ -63,6 +63,10 @@ ob_start();
           </select>
         </label>
         <label>Image URL<input type="url" name="image_url" id="prod-image"></label>
+        <div style="display:flex; gap:8px; align-items:center">
+          <button class="btn small" type="button" id="gen-img">Generate AI Image</button>
+          <input type="text" id="gen-prompt" placeholder="prompt details (optional)" style="flex:1; background:var(--bg-soft); color:var(--text); border:1px solid var(--border); border-radius:12px; padding:8px 10px"/>
+        </div>
         <label>Description<textarea name="description" id="prod-desc" rows="4"></textarea></label>
         <label class="checkbox"><input type="checkbox" name="is_featured" id="prod-featured"> Featured</label>
         <button class="btn btn-accent" type="submit">Save</button>
@@ -100,6 +104,17 @@ document.addEventListener('click', e => {
   const cat = document.getElementById('prod-category'); if (cat) cat.value = p.category_id;
   const feat = document.getElementById('prod-featured'); if (feat) feat.checked = !!Number(p.is_featured);
   window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+document.getElementById('gen-img')?.addEventListener('click', async () => {
+  const id = document.getElementById('prod-id').value;
+  if (!id) { alert('Save product first, then generate.'); return; }
+  const prompt = document.getElementById('gen-prompt').value || '';
+  const res = await fetch('/api/generate_image.php', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({csrf:'<?= esc(csrf_token()) ?>', product_id: Number(id), prompt})});
+  const data = await res.json();
+  if (!data.ok) { alert('Failed: '+(data.error||'unknown')); return; }
+  document.getElementById('prod-image').value = data.url;
+  alert('Image generated and set.');
 });
 </script>
 <?php
