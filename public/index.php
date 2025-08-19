@@ -15,6 +15,7 @@ ob_start();
     <h1 class="headline">Elegance in Every Circuit.</h1>
     <p class="sub">Smartphones, laptops, smartwatches and accessories — curated with taste.</p>
     <a class="btn btn-accent" href="<?= esc(url('store.php')) ?>">Shop Now</a>
+    <div style="margin-top:10px"><a class="btn" href="<?= esc(url('track.php')) ?>">Track Order</a></div>
   </div>
 </section>
 

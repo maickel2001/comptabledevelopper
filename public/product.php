@@ -13,6 +13,11 @@ $rel = $pdo->prepare('SELECT id, name, price, image_url FROM products WHERE cate
 $rel->execute([(int)$product['category_id'], $id]);
 $related = $rel->fetchAll();
 
+// Fetch reviews
+$revStmt = $pdo->prepare('SELECT r.*, u.name as user_name FROM reviews r LEFT JOIN users u ON u.id = r.user_id WHERE r.product_id = ? ORDER BY r.created_at DESC LIMIT 20');
+$revStmt->execute([$id]);
+$reviews = $revStmt->fetchAll();
+
 ob_start();
 ?>
 <section class="product-detail">
@@ -31,6 +36,20 @@ ob_start();
       </div>
     <?php endif; ?>
     <button class="btn btn-accent add-to-cart" data-id="<?= (int)$product['id'] ?>">Add to Cart</button>
+  </div>
+</section>
+
+<section class="reviews">
+  <h2>Customer Reviews</h2>
+  <div class="reviews-list">
+    <?php if (!$reviews): ?>
+      <div class="glass" style="padding:12px">No reviews yet.</div>
+    <?php else: foreach ($reviews as $r): ?>
+      <div class="glass" style="padding:12px; margin-bottom:10px">
+        <div><strong><?= esc($r['user_name'] ?: 'Anonymous') ?></strong> — <?= (int)$r['rating'] ?>/5</div>
+        <div style="opacity:.9; margin-top:6px"><?= nl2br(esc($r['comment'] ?? '')) ?></div>
+      </div>
+    <?php endforeach; endif; ?>
   </div>
 </section>
 

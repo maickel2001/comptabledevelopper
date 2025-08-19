@@ -67,6 +67,23 @@ CREATE TABLE IF NOT EXISTS reviews (
   CONSTRAINT fk_reviews_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Promotions (coupons / discounts)
+CREATE TABLE IF NOT EXISTS promotions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  code VARCHAR(60) NOT NULL UNIQUE,
+  discount_type ENUM('percent','fixed') NOT NULL,
+  discount_value DECIMAL(10,2) NOT NULL,
+  active TINYINT(1) NOT NULL DEFAULT 1,
+  starts_at DATETIME NULL,
+  ends_at DATETIME NULL,
+  apply_category_id INT NULL,
+  apply_product_id INT NULL,
+  created_at DATETIME NOT NULL,
+  CONSTRAINT fk_promotions_category FOREIGN KEY (apply_category_id) REFERENCES categories(id) ON DELETE SET NULL,
+  CONSTRAINT fk_promotions_product FOREIGN KEY (apply_product_id) REFERENCES products(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Seed categories
 INSERT IGNORE INTO categories (id, name, slug) VALUES
   (1, 'Smartphones', 'smartphones'),

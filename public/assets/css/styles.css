@@ -50,6 +50,7 @@ main{padding:30px 0}
 .hero .hero-inner{ text-align:center }
 
 .categories h2,.slider h2,.testimonials h2,.store h2,.related h2{margin:10px 0 16px 6px}
+.reviews h2{margin:10px 0 12px 6px}
 .cat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
 .cat-card{display:grid; place-items:center; padding:22px; text-decoration:none; color:var(--text); text-align:center; transition:transform .2s}
 .cat-card .icon{font-size:28px; margin-bottom:6px}
