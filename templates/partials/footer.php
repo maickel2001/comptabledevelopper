@@ -7,9 +7,9 @@
     <div>
       <h4>Help</h4>
       <ul>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Shipping & Returns</a></li>
-        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="<?= esc(url('faq.php')) ?>">FAQ</a></li>
+        <li><a href="<?= esc(url('shipping-returns.php')) ?>">Shipping & Returns</a></li>
+        <li><a href="<?= esc(url('privacy.php')) ?>">Privacy Policy</a></li>
       </ul>
     </div>
     <div>

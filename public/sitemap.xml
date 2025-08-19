@@ -5,4 +5,7 @@
   <url><loc>/login.php</loc></url>
   <url><loc>/signup.php</loc></url>
   <url><loc>/contact.php</loc></url>
+  <url><loc>/faq.php</loc></url>
+  <url><loc>/privacy.php</loc></url>
+  <url><loc>/shipping-returns.php</loc></url>
 </urlset>
